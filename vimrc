@@ -15,6 +15,7 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-ragtag.git'
+Bundle 'scrooloose/nerdtree.git'
 " ==========================================
 
 
@@ -58,4 +59,8 @@ let g:ragtag_global_maps = 1
 " Custom tab format, basend on languange conventions.
 autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4
 
-autocmd BufWritePre * :%s/\s\+$//e " Remove trailing spaces                        "    this also shows visual selection info
+autocmd BufWritePre * :%s/\s\+$//e " Remove trailing spaces
+
+"NERDTree Toggle using \][ keymap
+noremap <Leader>][ :NERDTreeToggle<CR>
+let g:NERDTreeChDirMode=2 "This changes current dir, so sync CommandT to look the same path as NERDTree is.
