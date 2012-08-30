@@ -1,3 +1,4 @@
+set t_Co=256
 set nocompatible               " be iMproved
 filetype off                   " required!
 
@@ -16,6 +17,7 @@ Bundle 'gmarik/vundle'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-ragtag.git'
 Bundle 'scrooloose/nerdtree.git'
+Bundle 'vim-scripts/Railscasts-Theme-GUIand256color'
 " ==========================================
 
 
@@ -36,7 +38,7 @@ set statusline+=%l/%L   " cursor line/total lines
 set statusline+=\ %P    " percent through file
 set laststatus=2        " always show status-line
 set showcmd             " show (partial) command in the last line of the screen
-
+let mapleader = ","
 " Toggle column with line numbers
 map <Leader>ln :set number!<CR>
 " Toggle column with distance in lines
@@ -64,3 +66,11 @@ autocmd BufWritePre * :%s/\s\+$//e " Remove trailing spaces
 "NERDTree Toggle using \][ keymap
 noremap <Leader>][ :NERDTreeToggle<CR>
 let g:NERDTreeChDirMode=2 "This changes current dir, so sync CommandT to look the same path as NERDTree is.
+
+
+
+
+colorscheme railscasts
+
+
+
