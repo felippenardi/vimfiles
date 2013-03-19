@@ -14,12 +14,24 @@ Bundle 'gmarik/vundle'
 
 " My Bundles here:
 " original repos on github
+Bundle 'scrooloose/nerdcommenter.git'
 Bundle 'kien/ctrlp.vim'
 Bundle 'tpope/vim-ragtag.git'
 Bundle 'scrooloose/nerdtree.git'
+Bundle 'scrooloose/nerdcommenter.git'
+Bundle '2072/PHP-Indenting-for-VIm'
 Bundle 'vim-scripts/Railscasts-Theme-GUIand256color'
+Bundle 'mattn/zencoding-vim'
+Bundle 'tpope/vim-ragtag'
+Bundle 'lukaszb/vim-web-indent'
+Bundle 'digitaltoad/vim-jade'
 " ==========================================
 
+" Fast window resizing http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
 
 filetype on           " Enable filetype detection
 filetype plugin on    " Enable filetype-specific plugins
@@ -39,6 +51,26 @@ set statusline+=\ %P    " percent through file
 set laststatus=2        " always show status-line
 set showcmd             " show (partial) command in the last line of the screen
 let mapleader = ","
+set history=1000
+set ignorecase
+set smartcase
+set scrolloff=5
+set hidden
+
+" Better  window split
+" by Jonathan Palardy
+" http://technotales.wordpress.com/2010/04/29/vim-splits-a-guide-to-doing-exactly-what-you-want/
+nmap <leader>swl  :topleft  vnew<CR>
+nmap <leader>swh  :botright vnew<CR>
+nmap <leader>swk  :topleft  new<CR>
+nmap <leader>swj  :botright new<CR>
+" Better buffer split
+nmap <leader>sl   :leftabove  vnew<CR>
+nmap <leader>sh   :rightbelow vnew<CR>
+nmap <leader>sk   :leftabove  new<CR>
+nmap <leader>sj   :rightbelow new<CR>
+
+
 " Toggle column with line numbers
 map <Leader>ln :set number!<CR>
 " Toggle column with distance in lines
@@ -64,13 +96,45 @@ autocmd FileType javascript setlocal tabstop=4 shiftwidth=4 softtabstop=4
 autocmd BufWritePre * :%s/\s\+$//e " Remove trailing spaces
 
 "NERDTree Toggle using \][ keymap
-noremap <Leader>][ :NERDTreeToggle<CR>
+noremap <Leader>as :NERDTreeToggle<CR>
 let g:NERDTreeChDirMode=2 "This changes current dir, so sync CommandT to look the same path as NERDTree is.
 
-
-
+set undofile
 
 colorscheme railscasts
 
 
+" Quick expand current buffer
+:map <F5> <Leader>as<C-W>_<C-W><Bar>
+:map <F6> <Leader>as<C-W>=<C-W>p
 
+" Clean closed buffers
+" Usage: :call CloseHiddenBuffers
+function! CloseHiddenBuffers()
+  " figure out which buffers are visible in any tab
+  let visible = {}
+  for t in range(1, tabpagenr('$'))
+    for b in tabpagebuflist(t)
+      let visible[b] = 1
+    endfor
+  endfor
+  " close any buffer that's loaded and not visible
+  for b in range(1, bufnr('$'))
+    if bufloaded(b) && !has_key(visible, b)
+      exe 'bd ' . b
+    endif
+  endfor
+endfun
+
+"Toggle auto-indenting for code paste
+"http://vim.wikia.com/wiki/Toggle_auto-indenting_for_code_paste
+set pastetoggle=<F2>
+
+"Folding automatically on ident
+"Use za to toggle fold on and off
+set foldmethod=indent
+set foldnestmax=4
+
+" Identation Guide (3 levels)
+" http://stackoverflow.com/questions/2158305/is-it-possible-to-display-indentation-guides-in-vim
+:match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
