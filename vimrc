@@ -25,6 +25,7 @@ Bundle 'mattn/zencoding-vim'
 Bundle 'tpope/vim-ragtag'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'kchmck/vim-coffee-script'
 " ==========================================
 
 " Fast window resizing http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
@@ -105,8 +106,8 @@ colorscheme railscasts
 
 
 " Quick expand current buffer
-:map <F5> <Leader>as<C-W>_<C-W><Bar>
-:map <F6> <Leader>as<C-W>=<C-W>p
+:map <F5> :NERDTreeClose<CR><C-W>_<C-W><Bar>
+:map <F6> :NERDTreeFocus<CR><C-W>=<C-W>p
 
 " Clean closed buffers
 " Usage: :call CloseHiddenBuffers
@@ -138,3 +139,12 @@ set foldnestmax=4
 " Identation Guide (3 levels)
 " http://stackoverflow.com/questions/2158305/is-it-possible-to-display-indentation-guides-in-vim
 :match Search /\%(\_^\s*\)\@<=\%(\%1v\|\%5v\|\%9v\)\s/
+
+" tab navigation like firefox
+nnoremap <C-S-tab> :tabprevious<CR>
+nnoremap <C-tab>   :tabnext<CR>
+nnoremap <C-t>     :tabnew<CR>
+inoremap <C-S-tab> <Esc>:tabprevious<CR>i
+inoremap <C-tab>   <Esc>:tabnext<CR>i
+inoremap <C-t>     <Esc>:tabnew<CR>
+
