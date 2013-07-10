@@ -26,6 +26,9 @@ Bundle 'tpope/vim-ragtag'
 Bundle 'lukaszb/vim-web-indent'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'mbbill/undotree'
+Bundle 'FredKSchott/CoVim'
+Bundle 'airblade/vim-gitgutter'
 " ==========================================
 
 " Fast window resizing http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
@@ -55,7 +58,7 @@ let mapleader = ","
 set history=1000
 set ignorecase
 set smartcase
-set scrolloff=5
+set scrolloff=1
 set hidden
 
 " Better  window split
@@ -71,6 +74,8 @@ nmap <leader>sh   :rightbelow vnew<CR>
 nmap <leader>sk   :leftabove  new<CR>
 nmap <leader>sj   :rightbelow new<CR>
 
+" Toggle Git Gutter
+nmap <leader>git :GitGutterToggle<CR>
 
 " Toggle column with line numbers
 map <Leader>ln :set number!<CR>
@@ -106,8 +111,16 @@ colorscheme railscasts
 
 
 " Quick expand current buffer
-:map <F5> :NERDTreeClose<CR><C-W>_<C-W><Bar>
-:map <F6> :NERDTreeFocus<CR><C-W>=<C-W>p
+" gg = Maximize
+" ss = Minimize
+nmap <Leader>gg :NERDTreeClose<CR><C-W>_<C-W><Bar>
+nmap <Leader>ss :NERDTreeFocus<CR><C-W>=<C-W>p
+
+" Undotree Toggle
+nmap <Leader><C-z> :UndotreeToggle<cr>
+
+" Avoid closing window when you just inted to cancel manage window command
+nmap <C-w><C-c> <ESC>
 
 " Clean closed buffers
 " Usage: :call CloseHiddenBuffers
@@ -135,6 +148,14 @@ set pastetoggle=<F2>
 "Use za to toggle fold on and off
 set foldmethod=indent
 set foldnestmax=4
+" making fold looking nice
+:hi Folded ctermfg=236
+:hi Folded ctermbg=234
+
+" highlight search
+:set hls
+" Press Space to turn off highlighting and clear any message already displayed.
+:nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
 " Identation Guide (3 levels)
 " http://stackoverflow.com/questions/2158305/is-it-possible-to-display-indentation-guides-in-vim
