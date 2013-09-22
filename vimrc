@@ -27,8 +27,9 @@ Bundle 'lukaszb/vim-web-indent'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mbbill/undotree'
-Bundle 'FredKSchott/CoVim'
+"Bundle 'FredKSchott/CoVim'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'mikewest/vimroom'
 " ==========================================
 
 " Fast window resizing http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
@@ -146,8 +147,8 @@ set pastetoggle=<F2>
 
 "Folding automatically on ident
 "Use za to toggle fold on and off
-set foldmethod=indent
-set foldnestmax=4
+"set foldmethod=indent
+"set foldnestmax=4
 " making fold looking nice
 :hi Folded ctermfg=236
 :hi Folded ctermbg=234
@@ -169,3 +170,10 @@ inoremap <C-S-tab> <Esc>:tabprevious<CR>i
 inoremap <C-tab>   <Esc>:tabnext<CR>i
 inoremap <C-t>     <Esc>:tabnew<CR>
 
+" Line and Column hilight
+:set cuc cul
+:hi CursorLine gui=NONE guibg=#333333
+:hi! link CursorColumn CursorLine
+
+" Toggle Vimroom - Writeroom
+nnoremap <silent> <Leader>ww <Plug>VimroomToggle
