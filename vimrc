@@ -30,7 +30,33 @@ Bundle 'mbbill/undotree'
 "Bundle 'FredKSchott/CoVim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'mikewest/vimroom'
+Bundle 'bling/vim-airline'
+Bundle 'lfilho/cosco.vim'
+Bundle 'ap/vim-css-color'
+Bundle 'tpope/vim-surround'
+Bundle 'wikitopian/hardmode'
 " ==========================================
+
+" Easily increase and decrease next number with ctrl+k and ctrl+j
+nnoremap <C-k> <C-a>
+nnoremap <C-j> <C-x>
+
+" Vim Hard Mode
+"autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+"nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>"
+
+" Vim Fucking Hard Mode
+"noremap k <NOP>
+"noremap j <NOP>
+"noremap h <NOP>
+"noremap l <NOP>
+
+" Enabling Cosco.vim on insert and normal mode
+autocmd FileType javascript,css,scss nmap <leader>, :call cosco#commaOrSemiColon()<CR>
+autocmd FileType javascript,css,scss inoremap <leader>, <ESC>:call cosco#commaOrSemiColon()"<CR>a
+
+" Commit message spell check
+autocmd BufNewFile,BufRead COMMIT_EDITMSG set spell
 
 " Fast window resizing http://vim.wikia.com/wiki/Fast_window_resizing_with_plus/minus_keys
 if bufwinnr(1)
