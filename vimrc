@@ -27,14 +27,15 @@ Bundle 'lukaszb/vim-web-indent'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'mbbill/undotree'
-"Bundle 'FredKSchott/CoVim'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'mikewest/vimroom'
 Bundle 'bling/vim-airline'
 Bundle 'lfilho/cosco.vim'
-Bundle 'ap/vim-css-color'
 Bundle 'tpope/vim-surround'
 Bundle 'wikitopian/hardmode'
+Bundle 'scrooloose/syntastic'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'chriskempson/tomorrow-theme'
 " ==========================================
 
 " Easily increase and decrease next number with ctrl+k and ctrl+j
@@ -134,7 +135,10 @@ let g:NERDTreeChDirMode=2 "This changes current dir, so sync CommandT to look th
 
 set undofile
 
-colorscheme railscasts
+syntax enable
+set background=dark
+colorscheme solarized
+:hi Search cterm=NONE ctermfg=230 ctermbg=234
 
 
 " Quick expand current buffer
@@ -203,3 +207,4 @@ inoremap <C-t>     <Esc>:tabnew<CR>
 
 " Toggle Vimroom - Writeroom
 nnoremap <silent> <Leader>ww <Plug>VimroomToggle
+
